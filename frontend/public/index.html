@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Simulador OSCE</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <div id="loading" style="
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: #f5f5f5; display: flex; flex-direction: column;
+        align-items: center; justify-content: center; z-index: 9999;
+    ">
+        <div style="
+            width: 64px; height: 64px; border-radius: 50%;
+            background: #e8f0fe; display: flex; align-items: center;
+            justify-content: center; font-size: 28px; margin-bottom: 16px;
+        ">🩺</div>
+        <p style="font-size: 18px; font-weight: 500; margin: 0 0 8px; font-family: sans-serif;">
+            Simulador OSCE
+        </p>
+        <p style="font-size: 13px; color: #888; margin: 0; font-family: sans-serif;">
+            Cargando...
+        </p>
+        <div style="
+            margin-top: 20px; width: 40px; height: 4px;
+            background: #e8f0fe; border-radius: 2px; overflow: hidden;
+        ">
+            <div id="loading-bar" style="
+                height: 100%; width: 0%; background: #1d4ed8;
+                border-radius: 2px; transition: width 0.3s ease;
+            "></div>
+        </div>
+    </div>
+
+    <div id="root"></div>
+
+    <script>
+        var progress = 0;
+        var interval = setInterval(function() {
+            progress += Math.random() * 15;
+            if (progress > 90) progress = 90;
+            document.getElementById('loading-bar').style.width = progress + '%';
+        }, 200);
+
+        window.addEventListener('load', function() {
+            clearInterval(interval);
+            document.getElementById('loading-bar').style.width = '100%';
+            setTimeout(function() {
+                var loading = document.getElementById('loading');
+                if (loading) {
+                    loading.style.opacity = '0';
+                    loading.style.transition = 'opacity 0.3s ease';
+                    setTimeout(function() {
+                        loading.style.display = 'none';
+                    }, 300);
+                }
+            }, 500);
+        });
+    </script>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

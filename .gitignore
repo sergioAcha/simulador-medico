@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.venv/
+venv/
+backend/venv/
+
+# Node / frontend
+frontend/node_modules/
+frontend/build/
+
+# Environment and secrets
+.env
+*.env
+.env.*
+
+# Local DB / app data
+backend/base_datos/*.db
+backend/base_datos/*.sqlite
+backend/base_datos/*.sqlite3
+
+# Backup artifacts and archives
+*.zip
+*.tar.gz
+
+# Logs and tooling
+*.log
+.DS_Store
+.vscode/
+.idea/
